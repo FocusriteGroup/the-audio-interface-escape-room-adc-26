@@ -1,13 +1,24 @@
 # Mission Guide
 
-How to build, check and debug the exercises. This release contains
-[Exercise 1](01-test-tone/README.md); the others are added before the workshop.
+How to build, check and debug the exercises.
+
+| Exercise | Brief | Runner |
+| --- | --- | --- |
+| 1 | [The test tone sounds distorted](01-test-tone/README.md) | `-DEX=1` |
+| 2 | [No sound in the right channel](02-right-channel/README.md) | `-DEX=2` |
+| 3 | [No sound when in mono](03-mono-playback/README.md) | `-DEX=3` |
+| 4 | [A steady tone has a faint buzz](04-playback-buzz/README.md) | `-DEX=4` |
+| 5 | [My saved setup sounds different](05-saved-setup/README.md) | `-DEX=5` |
+| Combined | [My recording sounds wrong](final-customer-report/README.md) | `-DEX=final` |
 
 Every exercise uses the same command from the repository root; only `EX` changes:
 
 ```sh
 cmake -DEX=1 -DMODE=start -P scripts/exercise.cmake
 ```
+
+Each exercise starts from its own code, not from your fixes to the one before, so
+you can start any of them at any time.
 
 The runner configures and builds the app and tests, checks the result, then opens
 the app on macOS and Windows. Linux prints the executable path for manual launch.
@@ -21,6 +32,8 @@ Useful options, placed before `-P`:
 - `-DAPP=OFF`: core-only build and tests, without JUCE or an audio device.
 - `-DRESET=ON`: start the exercise again from its original code. Your edits are
   backed up first.
+- `-DMODE=solution`: build and open the working version instead; see
+  [Catch Up With A Solution](#catch-up-with-a-solution).
 
 Dependencies are downloaded once through [CPM](https://github.com/cpm-cmake/CPM.cmake)
 into `.cache/cpm/`. Set the `CPM_SOURCE_CACHE` environment variable to use a
@@ -41,9 +54,12 @@ them back when you return. Every run also backs up `exercise/` to
 `build/workshop/backups/`. Copy anything you want to keep out of `build/` before
 deleting it. Git ignores `exercise/`.
 
+The [app overview](../docs/app-overview.md) shows where each of these files sits
+in the signal path and when the app calls it.
+
 Shared headers and supporting code stay in `audio-core/src/`. The hidden
-`audio-core/.answers/` folder holds the correct versions of the seven files, for
-instructors to run solutions. Comparing against it spoils the exercise.
+`audio-core/.answers/` folder holds the correct versions of the seven files, which
+solution mode builds. Comparing against it spoils the exercise.
 
 ## Check Your Fix
 
@@ -61,9 +77,28 @@ run the exercise command again.
 | Exercise | Focused check | Read |
 | --- | --- | --- |
 | 1 | `core_tests` | `tests/CoreTests.cpp`, the decibel checks in `main()` |
+| 2 | `exercise_02_check` | `tests/MissionTests.cpp`, `testRouting()` |
+| 3 | `exercise_03_check` | `tests/MissionTests.cpp`, `testMono()` |
+| 4 | `exercise_04_check`, `exercise_04_render` | `tests/CoreTests.cpp`, `testOutputBuffer()`; `tests/ScenarioTests.cpp`, `verifyBuffering()` |
+| 5 | `exercise_05_check` | `tests/MissionTests.cpp`, `testMigration()` |
+| Combined | `final_check`, `final_recording_check`, `final_capture_check` | `tests/MissionTests.cpp`, `testRateLifecycle()`, `testRecording()`, `testCaptureClipCount()` |
 
 The focused check is the exercise's regression test. Once it passes, read it and
 convince yourself it would have caught the bug.
+
+## Catch Up With A Solution
+
+To see an exercise working, or to catch up after the review, close the app and
+build the solution:
+
+```sh
+cmake -DEX=2 -DMODE=solution -P scripts/exercise.cmake
+```
+
+The app header shows `SOLUTION`. It keeps that exercise's inputs, controls and
+setup, so you can repeat your reproduction against the working version. Solution
+mode doesn't touch `exercise/`: run the same exercise with `-DMODE=start` to carry
+on with your own code.
 
 ## The App
 

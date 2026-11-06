@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="328" viewBox="0 0 1128 328" role="img" aria-labelledby="title description">
+  <title id="title">Two-channel audio processing signal path</title>
+  <desc id="description">Each virtual input passes through gain and mute, phase, and EQ before entering a shared two-by-two routing and summing matrix. Each output then passes through gain and mute. Red dots show input, post-gain and phase, post-EQ, post-mix, and final output analysis taps on both channels.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#404040"/>
+    </marker>
+  </defs>
+  <g fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M 104 116 H 160"/>
+    <path d="M 264 116 H 316"/>
+    <path d="M 420 116 H 472"/>
+    <path d="M 576 116 H 646"/>
+    <path d="M 804 116 H 862"/>
+    <path d="M 990 116 H 1034"/>
+    <path d="M 104 244 H 160"/>
+    <path d="M 264 244 H 316"/>
+    <path d="M 420 244 H 472"/>
+    <path d="M 576 244 H 646"/>
+    <path d="M 804 244 H 862"/>
+    <path d="M 990 244 H 1034"/>
+  </g>
+  <g fill="#f5f5f5" stroke="#767676" stroke-width="1.5">
+    <rect x="4" y="86" width="100" height="60" rx="3"/>
+    <rect x="160" y="86" width="104" height="60" rx="3"/>
+    <rect x="316" y="86" width="104" height="60" rx="3"/>
+    <rect x="472" y="86" width="104" height="60" rx="3"/>
+    <rect x="4" y="214" width="100" height="60" rx="3"/>
+    <rect x="160" y="214" width="104" height="60" rx="3"/>
+    <rect x="316" y="214" width="104" height="60" rx="3"/>
+    <rect x="472" y="214" width="104" height="60" rx="3"/>
+    <rect x="646" y="86" width="158" height="188" rx="3" fill="#eeeeee"/>
+    <rect x="862" y="86" width="128" height="60" rx="3"/>
+    <rect x="862" y="214" width="128" height="60" rx="3"/>
+    <rect x="1034" y="86" width="90" height="60" rx="3"/>
+    <rect x="1034" y="214" width="90" height="60" rx="3"/>
+  </g>
+  <g font-family="Avenir Next, Trebuchet MS, sans-serif" fill="#202328" text-anchor="middle" font-size="18">
+    <text x="54" y="122">Input 1</text>
+    <text x="212" y="122">Gain / mute</text>
+    <text x="368" y="122">Phase</text>
+    <text x="524" y="122">EQ</text>
+    <text x="54" y="250">Input 2</text>
+    <text x="212" y="250">Gain / mute</text>
+    <text x="368" y="250">Phase</text>
+    <text x="524" y="250">EQ</text>
+    <text x="725" y="158">2 x 2</text>
+    <text x="725" y="184">routing</text>
+    <text x="725" y="210">and mix</text>
+    <text x="926" y="122">Gain / mute</text>
+    <text x="926" y="250">Gain / mute</text>
+    <text x="1079" y="122">Output L</text>
+    <text x="1079" y="250">Output R</text>
+  </g>
+  <g fill="#b5121b">
+    <circle cx="132" cy="116" r="4.5"/>
+    <circle cx="446" cy="116" r="4.5"/>
+    <circle cx="610" cy="116" r="4.5"/>
+    <circle cx="832" cy="116" r="4.5"/>
+    <circle cx="1014" cy="116" r="4.5"/>
+    <circle cx="132" cy="244" r="4.5"/>
+    <circle cx="446" cy="244" r="4.5"/>
+    <circle cx="610" cy="244" r="4.5"/>
+    <circle cx="832" cy="244" r="4.5"/>
+    <circle cx="1014" cy="244" r="4.5"/>
+  </g>
+  <g font-family="Avenir Next, Trebuchet MS, sans-serif" fill="#646464" text-anchor="middle" font-size="17">
+    <text x="132" y="48">Input</text>
+    <text x="446" y="48">Post-gain</text>
+    <text x="610" y="48">Post-EQ</text>
+    <text x="832" y="48">Post-mix</text>
+    <text x="1014" y="48">Output</text>
+  </g>
+  <g fill="none" stroke="#b0b0b0" stroke-width="1" stroke-dasharray="3 4">
+    <path d="M 132 58 V 104"/>
+    <path d="M 446 58 V 104"/>
+    <path d="M 610 58 V 104"/>
+    <path d="M 832 58 V 104"/>
+    <path d="M 1014 58 V 104"/>
+  </g>
+  <circle cx="16" cy="310" r="4.5" fill="#b5121b"/>
+  <text x="30" y="316" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="17" fill="#646464">Analysis taps on both channels; post-gain is measured after the phase invert.</text>
+</svg>

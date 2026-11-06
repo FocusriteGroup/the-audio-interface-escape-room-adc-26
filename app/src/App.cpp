@@ -404,8 +404,12 @@ void App::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
         if (loopbackCapture.frameCount() > before)
             for (std::size_t channel = 0;
                  channel < std::min(audio_core::inputCount, audio_core::outputCount); ++channel)
-                accumulatePeak(capturePeak,
-                    audio_core::recordingMeterPeak(inputs[channel], outputs[channel]));
+            {
+                const auto meterPeak = audio_core::recordingMeterPeak(inputs[channel],
+                                                                      outputs[channel]);
+                accumulatePeak(capturePeak, meterPeak);
+                accumulatePeak(pendingCapturePeak, meterPeak);
+            }
     }
     if (replaying)
     {
@@ -466,6 +470,13 @@ void App::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
     deviceDiagnostics.publishClipCount(metrics.clippedSamples);
     analysisPanel.pushOscilloscopeBuffer(selectedAnalysisBuffer, 0, bufferToFill.numSamples);
     analysisPanel.pushSpectrumSamples(selectedSamples);
+
+    // Ear protection: turn down only what reaches the speakers. The recording, meters
+    // and analysis above all see the full-level signal.
+    if (!juce::exactlyEqual(initialSetup.listeningGain, 1.0f))
+        for (const auto output : outputs)
+            for (auto& sample : output)
+                sample *= initialSetup.listeningGain;
     finishCallback();
 }
 
@@ -712,14 +723,21 @@ void App::timerCallback()
 {
     if (statePublicationPending)
         publishAppState();
+    const auto now = juce::Time::getMillisecondCounter();
     if (header.captureControlsVisible())
     {
+        // The live capture meter shows what recordingMeterPeak() reports, block by block;
+        // the text holds the highest value since recording started.
+        updateMeter(captureMeterBallistics,
+                    pendingCapturePeak.exchange(0.0f, std::memory_order_acq_rel),
+                    now, captureRequested.load());
+        header.setCaptureMeter(captureMeterBallistics.smoothedPeak,
+                               captureMeterBallistics.heldPeak);
         header.setCaptureStatus("CAPTURE " + formatDecibels(capturePeak.load())
             + "\n" + juce::String(static_cast<juce::int64>(captureFrames.load())) + " frames, "
             + juce::String(static_cast<juce::int64>(captureClips.load())) + " clips");
         header.setReplayToggled(replayRequested.load());
     }
-    const auto now = juce::Time::getMillisecondCounter();
     const auto playing = isPlaying.load() || replayRequested.load();
     for (std::size_t input = 0; input < audio_core::inputCount; ++input)
     {

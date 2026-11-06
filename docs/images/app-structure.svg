@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="412" viewBox="0 0 1128 412" role="img" aria-labelledby="title description">
+  <title id="title">How App.cpp calls the exercise code</title>
+  <desc id="description">On the UI thread, a control change or preset load runs publishAppState in App.cpp, which calls prepareForSampleRate in ProcessorSetup.cpp and prepareState in AudioProcessor.cpp, using Gain.cpp to convert decibels; version 1 presets pass through LegacyMapping.cpp. The prepared settings are published through the shared state exchange. On the audio thread, getNextAudioBlock in App.cpp reads them with consumeLatest from the state exchange, generates the virtual sources, applies gain and EQ in AudioProcessor.cpp, mixes with mixOutput in Routing.cpp, applies output gain and mute, and copies to the device with copyOutputBlock in OutputBuffer.cpp. When recording, RecordingMeter.cpp measures the capture. Red dots mark the scope's Input, Post gain, Post EQ, Post mix and Output taps.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#404040"/>
+    </marker>
+  </defs>
+  <text x="0" y="18" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#b5121b" text-anchor="start" font-weight="600">UI THREAD  ·  when a control changes or a preset loads</text>
+  <rect x="0.0" y="32" width="190" height="72" rx="3" fill="#f5f5f5" stroke="#767676" stroke-width="1.5"/>
+  <text x="95.0" y="64.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">Control or preset</text>
+  <text x="95.0" y="83.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">App.cpp</text>
+  <rect x="234.5" y="32" width="190" height="72" rx="3" fill="#f5f5f5" stroke="#767676" stroke-width="1.5"/>
+  <text x="329.5" y="64.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">publishAppState()</text>
+  <text x="329.5" y="83.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">App.cpp</text>
+  <rect x="469.0" y="32" width="190" height="72" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="564.0" y="64.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">prepareForSampleRate()</text>
+  <text x="564.0" y="83.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">ProcessorSetup.cpp</text>
+  <rect x="703.5" y="32" width="190" height="72" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="798.5" y="55.0" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">prepareState()</text>
+  <text x="798.5" y="74.0" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">AudioProcessor.cpp</text>
+  <text x="798.5" y="93.0" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">Gain.cpp  (dB to linear)</text>
+  <rect x="938.0" y="32" width="190" height="72" rx="3" fill="#ffffff" stroke="#767676" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="1033.0" y="64.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">publish()</text>
+  <text x="1033.0" y="83.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">State exchange</text>
+  <path d="M 190.0 68.0 L 232.5 68.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 424.5 68.0 L 467.0 68.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 659.0 68.0 L 701.5 68.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 893.5 68.0 L 936.0 68.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="0" y="128" width="190" height="46" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="95.0" y="147.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">LegacyMapping.cpp</text>
+  <text x="95.0" y="166.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">version 1 presets</text>
+  <path d="M 95.0 128 L 95.0 106" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 1033.0 104 V 196 H 75 V 232" fill="none" stroke="#404040" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <text x="640" y="189" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">latest settings, read at the start of each block</text>
+  <text x="100" y="226" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#b5121b" text-anchor="start" font-weight="600">AUDIO THREAD  ·  getNextAudioBlock() in App.cpp, every block</text>
+  <rect x="0" y="238" width="150" height="70" rx="3" fill="#ffffff" stroke="#767676" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="75.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">consumeLatest()</text>
+  <text x="75.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">State exchange</text>
+  <rect x="178" y="238" width="150" height="70" rx="3" fill="#f5f5f5" stroke="#767676" stroke-width="1.5"/>
+  <text x="253.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">Virtual sources</text>
+  <text x="253.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#646464" text-anchor="middle" font-weight="normal">App.cpp</text>
+  <rect x="356" y="238" width="150" height="70" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="431.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">Gain and EQ</text>
+  <text x="431.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">AudioProcessor.cpp</text>
+  <rect x="534" y="238" width="150" height="70" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="609.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">mixOutput()</text>
+  <text x="609.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">Routing.cpp</text>
+  <rect x="712" y="238" width="150" height="70" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="787.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">Output gain, mute</text>
+  <text x="787.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">AudioProcessor.cpp</text>
+  <rect x="890" y="238" width="150" height="70" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="965.0" y="269.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">copyOutputBlock()</text>
+  <text x="965.0" y="288.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">OutputBuffer.cpp</text>
+  <path d="M 150 273.0 L 176 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 328 273.0 L 354 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 506 273.0 L 532 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 684 273.0 L 710 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 862 273.0 L 888 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 1040 273.0 L 1070 273.0" fill="none" stroke="#404040" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="1076" y="278.0" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#646464" text-anchor="start" font-weight="normal">device</text>
+  <circle cx="342.0" cy="273.0" r="5" fill="#b5121b"/>
+  <text x="342.0" y="330" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="13" fill="#b5121b" text-anchor="middle" font-weight="normal">Input</text>
+  <text x="431.0" y="330" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="13" fill="#b5121b" text-anchor="middle" font-weight="normal">Post gain, Post EQ</text>
+  <circle cx="396" cy="308" r="5" fill="#b5121b"/>
+  <circle cx="466" cy="308" r="5" fill="#b5121b"/>
+  <circle cx="698.0" cy="273.0" r="5" fill="#b5121b"/>
+  <text x="698.0" y="330" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="13" fill="#b5121b" text-anchor="middle" font-weight="normal">Post mix</text>
+  <circle cx="1055" cy="273.0" r="5" fill="#b5121b"/>
+  <text x="1055" y="330" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="13" fill="#b5121b" text-anchor="middle" font-weight="normal">Output</text>
+  <rect x="805.0" y="350" width="320" height="50" rx="3" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="965.0" y="371.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="16" fill="#202328" text-anchor="middle" font-weight="normal">When recording: recordingMeterPeak()</text>
+  <text x="965.0" y="390.5" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="14" fill="#b5121b" text-anchor="middle" font-weight="normal">RecordingMeter.cpp</text>
+  <path d="M 965.0 308 V 350" fill="none" stroke="#404040" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+  <rect x="0" y="362" width="26" height="18" rx="2" fill="#ffffff" stroke="#b5121b" stroke-width="2"/>
+  <text x="34" y="376" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#202328" text-anchor="start" font-weight="normal">exercise/</text>
+  <rect x="0" y="388" width="26" height="18" rx="2" fill="#f5f5f5" stroke="#767676" stroke-width="1.5"/>
+  <text x="34" y="402" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#202328" text-anchor="start" font-weight="normal">app/src/App.cpp</text>
+  <rect x="250" y="388" width="26" height="18" rx="2" fill="#ffffff" stroke="#767676" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="284" y="402" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#202328" text-anchor="start" font-weight="normal">audio-core/src/ (shared)</text>
+  <circle cx="263" cy="371" r="5" fill="#b5121b"/>
+  <text x="276" y="376" font-family="Avenir Next, Trebuchet MS, sans-serif" font-size="15" fill="#202328" text-anchor="start" font-weight="normal">Scope tap</text>
+</svg>

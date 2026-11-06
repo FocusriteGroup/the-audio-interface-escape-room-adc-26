@@ -31,6 +31,9 @@ MissionSetup setupForMission(std::string_view name)
         setup.amplitudes[0] = 0.3f;
         setup.product.inputs[0].equalizer.lowGainDecibels = 12.0f;
         setup.product.inputs[1].muted = true;
+        // About -8 dB. The fault clips the output at full scale, and the slow clip count
+        // can break it into dropouts; this keeps both near the other exercises' level.
+        setup.listeningGain = 0.4f;
     }
     return setup;
 }

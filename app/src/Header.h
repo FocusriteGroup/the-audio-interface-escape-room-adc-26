@@ -1,5 +1,7 @@
 #pragma once
 
+#include "components/LevelMeterComponent.h"
+
 #include <JuceHeader.h>
 
 #include <functional>
@@ -16,6 +18,7 @@ public:
 
     bool captureControlsVisible() const { return captureButton.isVisible(); }
     void setCaptureStatus(const juce::String& text);
+    void setCaptureMeter(float level, float peakHold);
     void setReplayToggled(bool shouldBeOn);
     void setCaptureToggled(bool shouldBeOn);
 
@@ -33,6 +36,7 @@ private:
     juce::TextButton playButton;
     juce::ToggleButton captureButton { "LOOPBACK RECORD" };
     juce::ToggleButton replayButton { "REPLAY CAPTURE" };
+    LevelMeterComponent captureMeter;
     juce::Label captureStatusLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Header)

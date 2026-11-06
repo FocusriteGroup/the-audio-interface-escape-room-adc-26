@@ -88,8 +88,14 @@ Header::Header()
     #if defined(ESCAPE_ROOM_MISSION_FINAL)
      addAndMakeVisible(captureButton);
      addAndMakeVisible(replayButton);
+     addAndMakeVisible(captureMeter);
      addAndMakeVisible(captureStatusLabel);
     #endif
+}
+
+void Header::setCaptureMeter(float level, float peakHold)
+{
+    captureMeter.setLevels(level, peakHold);
 }
 
 void Header::setCaptureStatus(const juce::String& text)
@@ -125,6 +131,9 @@ void Header::resized()
     if (captureButton.isVisible())
     {
         captureStatusLabel.setBounds(header.removeFromRight(190));
+        header.removeFromRight(6);
+        captureMeter.setBounds(header.removeFromRight(18).reduced(2, 10));
+        header.removeFromRight(8);
         replayButton.setBounds(header.removeFromRight(145));
         captureButton.setBounds(header.removeFromRight(145));
         header.removeFromRight(8);

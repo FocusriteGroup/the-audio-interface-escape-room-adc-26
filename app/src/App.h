@@ -102,6 +102,8 @@ private:
     std::atomic<bool> captureRequested { false };
     std::atomic<bool> replayRequested { false };
     std::atomic<float> capturePeak { 0.0f };
+    std::atomic<float> pendingCapturePeak { 0.0f };
+    MeterBallistics captureMeterBallistics;
     std::atomic<std::size_t> captureFrames { 0 };
     std::atomic<std::size_t> captureClips { 0 };
     bool wasCapturing = false;

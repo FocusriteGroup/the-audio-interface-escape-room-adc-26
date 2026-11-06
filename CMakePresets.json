@@ -36,6 +36,24 @@
       }
     },
     {
+      "name": "mission-04-core-debug",
+      "displayName": "Mission 4 Core Debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/mission-04-core-debug",
+      "cacheVariables": {
+        "ESCAPE_ROOM_MISSION": "04-playback-buzz"
+      }
+    },
+    {
+      "name": "mission-04-debug",
+      "displayName": "Mission 4 App Debug",
+      "inherits": "mission-04-core-debug",
+      "binaryDir": "${sourceDir}/build/mission-04-debug",
+      "cacheVariables": {
+        "ESCAPE_ROOM_BUILD_APP": "ON"
+      }
+    },
+    {
       "name": "baseline-release",
       "displayName": "Known-good Baseline Release",
       "generator": "Ninja",
@@ -45,6 +63,54 @@
         "ESCAPE_ROOM_BUILD_APP": "ON",
         "ESCAPE_ROOM_MISSION": "baseline"
       }
+    },
+    {
+      "name": "mission-02-core-debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/mission-02-core-debug",
+      "cacheVariables": { "ESCAPE_ROOM_MISSION": "02-right-channel" }
+    },
+    {
+      "name": "mission-02-debug",
+      "inherits": "mission-02-core-debug",
+      "binaryDir": "${sourceDir}/build/mission-02-debug",
+      "cacheVariables": { "ESCAPE_ROOM_BUILD_APP": "ON" }
+    },
+    {
+      "name": "mission-03-core-debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/mission-03-core-debug",
+      "cacheVariables": { "ESCAPE_ROOM_MISSION": "03-mono-playback" }
+    },
+    {
+      "name": "mission-03-debug",
+      "inherits": "mission-03-core-debug",
+      "binaryDir": "${sourceDir}/build/mission-03-debug",
+      "cacheVariables": { "ESCAPE_ROOM_BUILD_APP": "ON" }
+    },
+    {
+      "name": "mission-05-core-debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/mission-05-core-debug",
+      "cacheVariables": { "ESCAPE_ROOM_MISSION": "05-saved-setup" }
+    },
+    {
+      "name": "mission-05-debug",
+      "inherits": "mission-05-core-debug",
+      "binaryDir": "${sourceDir}/build/mission-05-debug",
+      "cacheVariables": { "ESCAPE_ROOM_BUILD_APP": "ON" }
+    },
+    {
+      "name": "final-core-debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/final-core-debug",
+      "cacheVariables": { "ESCAPE_ROOM_MISSION": "final-customer-report" }
+    },
+    {
+      "name": "final-debug",
+      "inherits": "final-core-debug",
+      "binaryDir": "${sourceDir}/build/final-debug",
+      "cacheVariables": { "ESCAPE_ROOM_BUILD_APP": "ON" }
     },
     {
       "name": "baseline-release-macos",
@@ -97,6 +163,22 @@
     }
   ],
   "buildPresets": [
+    { "name": "mission-02-core-debug", "configurePreset": "mission-02-core-debug" },
+    { "name": "mission-02-debug", "configurePreset": "mission-02-debug" },
+    { "name": "mission-03-core-debug", "configurePreset": "mission-03-core-debug" },
+    { "name": "mission-03-debug", "configurePreset": "mission-03-debug" },
+    { "name": "mission-05-core-debug", "configurePreset": "mission-05-core-debug" },
+    { "name": "mission-05-debug", "configurePreset": "mission-05-debug" },
+    { "name": "final-core-debug", "configurePreset": "final-core-debug" },
+    { "name": "final-debug", "configurePreset": "final-debug" },
+    {
+      "name": "mission-04-core-debug",
+      "configurePreset": "mission-04-core-debug"
+    },
+    {
+      "name": "mission-04-debug",
+      "configurePreset": "mission-04-debug"
+    },
     {
       "name": "core-debug",
       "configurePreset": "core-debug"
@@ -131,6 +213,28 @@
     }
   ],
   "testPresets": [
+    { "name": "mission-02-core-debug", "configurePreset": "mission-02-core-debug", "output": { "outputOnFailure": true } },
+    { "name": "mission-02-debug", "configurePreset": "mission-02-debug", "output": { "outputOnFailure": true } },
+    { "name": "mission-03-core-debug", "configurePreset": "mission-03-core-debug", "output": { "outputOnFailure": true } },
+    { "name": "mission-03-debug", "configurePreset": "mission-03-debug", "output": { "outputOnFailure": true } },
+    { "name": "mission-05-core-debug", "configurePreset": "mission-05-core-debug", "output": { "outputOnFailure": true } },
+    { "name": "mission-05-debug", "configurePreset": "mission-05-debug", "output": { "outputOnFailure": true } },
+    { "name": "final-core-debug", "configurePreset": "final-core-debug", "output": { "outputOnFailure": true } },
+    { "name": "final-debug", "configurePreset": "final-debug", "output": { "outputOnFailure": true } },
+    {
+      "name": "mission-04-core-debug",
+      "configurePreset": "mission-04-core-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "mission-04-debug",
+      "configurePreset": "mission-04-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
     {
       "name": "core-debug",
       "configurePreset": "core-debug",

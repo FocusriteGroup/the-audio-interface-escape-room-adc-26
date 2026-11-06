@@ -7,10 +7,8 @@ that is about to ship, and customers have already found some problems.
 There are five exercises and a combined exercise. Each one starts from a customer
 bug report. No audio interface, virtual driver or DAW is needed.
 
-**This is the pre-workshop release.** It contains Exercise 1, so you can install
-the tools, build once and check your audio before the day. The other exercises
-will be added to this repository before the workshop; see
-[Getting The Other Exercises](#getting-the-other-exercises).
+Already cloned the pre-workshop release? See
+[Updating An Earlier Clone](#updating-an-earlier-clone).
 
 ## Before The Workshop
 
@@ -162,25 +160,38 @@ oscilloscope, meters, spectrum and diagnostics to find the first stage where the
 signal goes wrong, fix the C++, then prove the fix with the exercise's focused
 check. Hints are there if you get stuck.
 
-| Exercise | Customer Report | Available |
+| Exercise | Customer Report | Start It With |
 | --- | --- | --- |
-| 1 | [The test tone sounds distorted](missions/01-test-tone/README.md) | Now |
-| 2 | No sound in the right channel | Before the workshop |
-| 3 | No sound when in mono | Before the workshop |
-| 4 | A steady tone has a faint buzz | Before the workshop |
-| 5 | My saved setup sounds different | Before the workshop |
-| Combined | My recording sounds wrong | Before the workshop |
+| 1 | [The test tone sounds distorted](missions/01-test-tone/README.md) | `-DEX=1` |
+| 2 | [No sound in the right channel](missions/02-right-channel/README.md) | `-DEX=2` |
+| 3 | [No sound when in mono](missions/03-mono-playback/README.md) | `-DEX=3` |
+| 4 | [A steady tone has a faint buzz](missions/04-playback-buzz/README.md) | `-DEX=4` |
+| 5 | [My saved setup sounds different](missions/05-saved-setup/README.md) | `-DEX=5` |
+| Combined | [My recording sounds wrong](missions/final-customer-report/README.md) | `-DEX=final` |
 
-Exercise 1 is a short guided warm-up that opens the workshop. You're welcome to
-look at it now, but there's no need to solve it beforehand.
+For example, to start Exercise 2:
+
+```sh
+cmake -DEX=2 -DMODE=start -P scripts/exercise.cmake
+```
+
+Exercise 1 is a short guided warm-up that opens the workshop. There's no need to
+solve any of the exercises before the day. Each exercise starts on its own, so you
+can move on without finishing the one before.
 
 All your code changes go in one folder, `exercise/`, which holds the processing
 files for the exercise you last ran. The [mission guide](missions/README.md)
-covers checking your fix, debugging in VS Code and the build options.
+covers checking your fix, debugging in VS Code, catching up with a solution and
+the build options.
 
-## Getting The Other Exercises
+The [app overview](docs/app-overview.md) has the diagrams from the workshop
+slides, for reference while you work: what each control does, the signal path
+and its measurement points, and how the app calls the code in `exercise/`.
 
-Before the workshop, update your copy from the repository folder:
+## Updating An Earlier Clone
+
+If you cloned the pre-workshop release, update your copy from the repository
+folder:
 
 ```sh
 git pull
