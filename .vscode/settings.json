@@ -1,0 +1,17 @@
+{
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/workshop/app/compile_commands.json",
+  "C_Cpp.default.cppStandard": "c++20",
+  "cmake.configureOnOpen": false,
+  "files.exclude": {
+    "**/.answers": true,
+    "**/.exercises": true
+  },
+  "search.exclude": {
+    "**/.answers": true,
+    "**/.exercises": true,
+    "build": true,
+    "dist": true,
+    ".cache": true
+  },
+  "search.useIgnoreFiles": false
+}

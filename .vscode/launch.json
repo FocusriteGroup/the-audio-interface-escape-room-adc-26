@@ -1,0 +1,52 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug app",
+      "type": "lldb",
+      "request": "launch",
+      "preLaunchTask": "Build current exercise",
+      "program": "${workspaceFolder}/build/workshop/app/bin/Fix It Before Launch",
+      "osx": {
+        "program": "${workspaceFolder}/build/workshop/app/bin/Fix It Before Launch.app/Contents/MacOS/Fix It Before Launch"
+      },
+      "cwd": "${workspaceFolder}",
+      // Program output goes to the Debug Console rather than a terminal.
+      "terminal": "console",
+      // Don't pause on C++ throws: the system audio code throws and catches
+      // exceptions internally, which would stop the app on every launch.
+      "preRunCommands": [
+        "script [b.SetEnabled(False) for b in lldb.debugger.GetSelectedTarget().breakpoint_iter() if 'Exception breakpoint' in str(b)]"
+      ]
+    },
+    {
+      "name": "Debug focused check",
+      "type": "lldb",
+      "request": "launch",
+      "preLaunchTask": "Build current exercise",
+      "program": "${workspaceFolder}/build/workshop/app/tests/escape_room_focused_check",
+      "cwd": "${workspaceFolder}",
+      "terminal": "console",
+      "preRunCommands": [
+        "script [b.SetEnabled(False) for b in lldb.debugger.GetSelectedTarget().breakpoint_iter() if 'Exception breakpoint' in str(b)]"
+      ]
+    },
+    {
+      "name": "Debug app (Windows)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "preLaunchTask": "Build current exercise",
+      "program": "${workspaceFolder}/build/workshop/app/bin/Fix It Before Launch.exe",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Debug focused check (Windows)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "preLaunchTask": "Build current exercise",
+      "program": "${workspaceFolder}/build/workshop/app/tests/escape_room_focused_check.exe",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}

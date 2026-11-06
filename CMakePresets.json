@@ -1,0 +1,191 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "core-debug",
+      "displayName": "Core Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/core-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "ESCAPE_ROOM_BUILD_APP": "OFF"
+      }
+    },
+    {
+      "name": "mission-01-debug",
+      "displayName": "Mission 1 Debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/mission-01-debug",
+      "cacheVariables": {
+        "ESCAPE_ROOM_BUILD_APP": "ON",
+        "ESCAPE_ROOM_MISSION": "01-test-tone"
+      }
+    },
+    {
+      "name": "app-debug",
+      "displayName": "Known-good App Debug",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/app-debug",
+      "cacheVariables": {
+        "ESCAPE_ROOM_BUILD_APP": "ON"
+      }
+    },
+    {
+      "name": "baseline-release",
+      "displayName": "Known-good Baseline Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/baseline-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ESCAPE_ROOM_BUILD_APP": "ON",
+        "ESCAPE_ROOM_MISSION": "baseline"
+      }
+    },
+    {
+      "name": "baseline-release-macos",
+      "displayName": "Known-good Baseline Universal macOS Release",
+      "inherits": "baseline-release",
+      "binaryDir": "${sourceDir}/build/baseline-release-macos",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "arm64;x86_64"
+      }
+    },
+    {
+      "name": "mission-01-release",
+      "displayName": "Mission 1 Release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/mission-01-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ESCAPE_ROOM_BUILD_APP": "ON",
+        "ESCAPE_ROOM_MISSION": "01-test-tone",
+        "ESCAPE_ROOM_USE_START_CODE": "ON"
+      }
+    },
+    {
+      "name": "mission-01-release-macos",
+      "displayName": "Mission 1 Universal macOS Release",
+      "inherits": "mission-01-release",
+      "binaryDir": "${sourceDir}/build/mission-01-release-macos",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "CMAKE_OSX_ARCHITECTURES": "arm64;x86_64"
+      }
+    },
+    {
+      "name": "core-sanitized",
+      "displayName": "Core Address/Undefined Sanitizers",
+      "inherits": "core-debug",
+      "binaryDir": "${sourceDir}/build/core-sanitized",
+      "cacheVariables": {
+        "ESCAPE_ROOM_ENABLE_SANITIZERS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "core-debug",
+      "configurePreset": "core-debug"
+    },
+    {
+      "name": "mission-01-debug",
+      "configurePreset": "mission-01-debug"
+    },
+    {
+      "name": "app-debug",
+      "configurePreset": "app-debug"
+    },
+    {
+      "name": "baseline-release",
+      "configurePreset": "baseline-release"
+    },
+    {
+      "name": "baseline-release-macos",
+      "configurePreset": "baseline-release-macos"
+    },
+    {
+      "name": "mission-01-release",
+      "configurePreset": "mission-01-release"
+    },
+    {
+      "name": "mission-01-release-macos",
+      "configurePreset": "mission-01-release-macos"
+    },
+    {
+      "name": "core-sanitized",
+      "configurePreset": "core-sanitized"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "core-debug",
+      "configurePreset": "core-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "mission-01-debug",
+      "configurePreset": "mission-01-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "app-debug",
+      "configurePreset": "app-debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "baseline-release",
+      "configurePreset": "baseline-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "baseline-release-macos",
+      "configurePreset": "baseline-release-macos",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "mission-01-release",
+      "configurePreset": "mission-01-release",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "mission-01-release-macos",
+      "configurePreset": "mission-01-release-macos",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "core-sanitized",
+      "configurePreset": "core-sanitized",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

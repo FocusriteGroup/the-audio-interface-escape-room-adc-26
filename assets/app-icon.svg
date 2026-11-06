@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Fix It Before Launch</title>
+  <desc>A red audio interface with two inputs and a white signal waveform.</desc>
+  <rect x="64" y="64" width="896" height="896" rx="196" fill="#b5121b"/>
+  <path d="M260 64h504c108 0 196 88 196 196v36H64v-36C64 152 152 64 260 64z" fill="#ca2630"/>
+  <rect x="144" y="256" width="736" height="512" rx="64" fill="#202426"/>
+  <path d="M208 256h608c35 0 64 29 64 64v20H144v-20c0-35 29-64 64-64z" fill="#343b3f"/>
+  <g fill="none" stroke="#f4f5f5" stroke-width="20">
+    <circle cx="284" cy="436" r="44"/>
+    <circle cx="284" cy="588" r="44"/>
+  </g>
+  <g fill="#aeb9bd">
+    <circle cx="284" cy="436" r="11"/>
+    <circle cx="284" cy="588" r="11"/>
+  </g>
+  <path d="M416 512h60l36-108 60 216 60-216 36 108h100" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="416" y="678" width="48" height="12" rx="6" fill="#64b9a8"/>
+  <rect x="484" y="678" width="48" height="12" rx="6" fill="#64b9a8"/>
+</svg>

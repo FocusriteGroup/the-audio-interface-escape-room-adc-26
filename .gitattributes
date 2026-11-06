@@ -1,0 +1,4 @@
+# Facilitator notes state each exercise's bug outright. Leave them out of
+# attendee source packages made with `git archive` or GitHub's "Download ZIP".
+# A full `git clone` still includes them.
+missions/*/facilitator.md export-ignore
