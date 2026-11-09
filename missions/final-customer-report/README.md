@@ -43,7 +43,7 @@ The **CAPTURE** meter shows the recording level live. The readout beside it show
 highest level reported for that capture, its length in frames and its count of
 clipped samples.
 
-Capture is bounded to 192,000 frames. A device-rate restart clears it and begins
+Capture is bounded to 960,000 frames. A device-rate restart clears it and begins
 a new segment if recording remains enabled. This avoids treating mixed-rate
 frames as one WAV and keeps that separate problem out of the investigation.
 Replay loops the latest segment without rerunning it through EQ. Stay at its

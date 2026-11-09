@@ -98,7 +98,7 @@ private:
     audio_core::AudioProcessor audioProcessor;
     audio_core::StateExchange appStateExchange;
     bool statePublicationPending = false;
-    audio_core::LoopbackCapture loopbackCapture { 192'000 };
+    audio_core::LoopbackCapture loopbackCapture { 960'000 };
     std::atomic<bool> captureRequested { false };
     std::atomic<bool> replayRequested { false };
     std::atomic<float> capturePeak { 0.0f };
