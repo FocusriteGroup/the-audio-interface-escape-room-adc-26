@@ -188,6 +188,9 @@ The [app overview](docs/app-overview.md) has the diagrams from the workshop
 slides, for reference while you work: what each control does, the signal path
 and its measurement points, and how the app calls the code in `exercise/`.
 
+The full [workshop slides](docs/slides.pdf) are also available as a PDF. They
+include the answer to every exercise, so save them for after you've had a go.
+
 ## Updating An Earlier Clone
 
 If you cloned the pre-workshop release, update your copy from the repository
